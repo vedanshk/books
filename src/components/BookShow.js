@@ -8,9 +8,10 @@ function BookShow({ book , onDelete , onEdit }) {
 
         onDelete(book.id);
     }
-  const handleToggleForm = ( value ) =>{
+  const handleSubmit = ( id , newTitle ) =>{
+        onEdit(id , newTitle)
 
-        setShowEdit(value);
+        setShowEdit(false);
     }
     const handleEdit = ()=>{
         setShowEdit(!showEdit);
@@ -19,7 +20,7 @@ function BookShow({ book , onDelete , onEdit }) {
 
     let content = <h3>{book.title}</h3>
     if(showEdit){
-        content = <BookEdit book={book} toggleForm={handleToggleForm}  onEdit={onEdit} />
+        content = <BookEdit book={book} onSubmit={handleSubmit} />
     }
 
   
