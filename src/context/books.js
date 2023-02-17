@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useCallback, useState } from "react";
 import axios from "axios";
 const BooksContext = createContext();
 
@@ -13,6 +13,11 @@ const Provider = ({ children }) => {
     setBooks(response.data);
 
   };
+
+  const stableFetchBooks =  useCallback(
+   fetchBooks,
+   []
+  );
 
 
   const createBook = async (title) => {
@@ -53,7 +58,8 @@ const Provider = ({ children }) => {
     onCreate: createBook,
     fetchBooks,
     onDelete:deleteBookByid,
-    onEdit:updateBookById
+    onEdit:updateBookById,
+    stableFetchBooks
   }
 
 
